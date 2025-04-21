@@ -43,6 +43,7 @@ Le projet vise la réalisation d'une application web permettant la gestion compl
 
 **Style**
 - Création d'une maquette Figma 
+https://www.figma.com/proto/i77g0HxKCzoeSqL1fbiiYo/Web-Rattrapage?page-id=0%3A1&node-id=8-51&p=f&viewport=-36%2C201%2C0.1&t=gTSKsJ55MhXWF2Oe-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=8%3A51
 - Définition d'une charte graphique
 - Utilisation de Bulma
 
@@ -50,4 +51,5 @@ Le projet vise la réalisation d'une application web permettant la gestion compl
 
 - Le code est architecturé selon le modèle Model View Crontoller 
 - Pour la création de la Base De Données, un dictionnaire, un MCD MLD MPD ont été fait pour définir les besoins et le format de la BDD.
+- Elle est faite sur un SQLserver crée depuis PHPmyadmin
 

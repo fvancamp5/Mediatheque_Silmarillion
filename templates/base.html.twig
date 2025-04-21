@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title%} {% endblock %}</title>
+        
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <img src="" >
+            </div>
+            <div class="cell">
+                <h1 class="title is-1"> Silmarillion </h1>
+            </div>
+            <div class="are-medium">
+                <a href="{{ url('inscription') }}" >
+                <input class="button" id="Inscription" />
+            </div>
+            <div class="are-medium">
+                <a href="{{ url('connexion') }}" >
+                <button class="button" id="Connexion" >Connexion</button>
+            </div>
+        </header>
+        <main id="main">
+            {% block body %}
+            {% endblock %}
+        </main>
+    </body>
+</html>
