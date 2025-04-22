@@ -15,7 +15,7 @@ final class HomeController extends AbstractController{
         //on initialise user sinon on a une erreur
         $user= null;
 
-        if (($request->isMethod('POST')) && ($request->request->get('connexion') == true)) {
+        if ($request->isMethod('POST')) {
             $firstname = $request->request->get('firstname');
             $lastname = $request->request->get('lastname');
             $email = $request->request->get('email');

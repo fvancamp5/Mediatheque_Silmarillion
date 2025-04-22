@@ -31,7 +31,6 @@ header a {
     margin-left: auto;
     display: inline-flex;
     flex-wrap: nowrap;
-    border: #FCA311 solid 0.125rem;
     justify-content: center;
 
 }
@@ -47,6 +46,7 @@ header a {
 
 .nav-search input[type="text"]{
     border-radius: 30rem 0 0 30rem;
+    border: white solid 0.125rem;
 }
 .nav-search input[type="submit"]{
     border-radius: 0 30rem 30rem 0;
@@ -100,6 +100,10 @@ form input[type="text"]{
 }
 .input.is-primary:not([value = ""]) {
     background: white;
+}
+input::placeholder {
+    color: var(--blue)!important;
+    font-weight: bold;
 }
 
 

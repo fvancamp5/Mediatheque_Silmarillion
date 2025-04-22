@@ -4,10 +4,15 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{page_name}}</title>
-        <link rel="stylesheet" href="{{ asset('style/webstyle.css') }}">
+        <link rel="stylesheet" href="{{ asset('style/signstyle.css') }}">
     </head>
     <body>
-        <form method="post" action="{{ path('home') }}">
+        <main>
+        <form method="post" action="{{ path('home') }}" class="form">
+            <a href="{{ url('home') }}" class="logo">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" >
+                <h1 class="title is-1"> Silmarillion </h1>
+            </a>
             <!-- si on render avec la condition connexion on montre que la page de connexion 
                  à l'inverse on render le formulaire d'insciption -->
             {% if connexion == false %}
@@ -27,8 +32,10 @@
                     <label for="confirm_password">Confirmer le mot de passe:</label>
                     <input type="password" id="confirm_password" name="confirm_password" class="input is-primary" required>
 
-                    <button type="submit" class="button" id="Inscription">S'inscrire</button>
-                    <a href="{{ url('connexion') }}" class="button" id="Connexion">Déjà inscrit ?</a>
+                    <div class="form-button">
+                        <button type="submit" class="button" id="Inscription">S'inscrire</button>
+                        <a href="{{ url('connexion') }}" class="button" id="Connexion">Déjà inscrit ?</a>
+                    </div>
                 </div>
             {% elseif connexion == true %}
                 <div class="form-group">
@@ -38,11 +45,15 @@
                     <label for="password">Mot de passe:</label>
                     <input type="password" id="password" name="password" class="input is-primary" required>
 
-                    <button type="submit" class="button" id="Connexion">Se connecter</button>
-                    <a href="{{ url('inscription') }}" id="Inscription">Se créer un compte</a>
+                    <div class="form-button">
+                        <button type="submit" class="button" id="Connexion">Se connecter</button>
+                        <a href="{{ url('inscription') }}">Se créer un compte</a>
+                    </div>
                 </div>
             {% endif %}
 
         </form>
+        <img src="{{ asset('images/log_bg.png') }}" alt="Médiathèque" class="image">
+        </main>
     </body>
 </html>
