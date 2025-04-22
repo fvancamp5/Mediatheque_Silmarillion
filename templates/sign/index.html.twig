@@ -1,10 +1,12 @@
-{% extends 'base.html.twig' %}
+<DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title%} {% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('style/webstyle.css') }}">
+    </head>
+    <body>
 
-{% block title %}
-    {{ page_name }}
-{% endblock %}
-
-{% block body %}
-    <h1>HELLO</h1>
-
-{% endblock %}
+    </body>
+</html>

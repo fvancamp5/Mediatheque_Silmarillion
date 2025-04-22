@@ -4,24 +4,39 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title%} {% endblock %}</title>
-        
+        <link rel="stylesheet" href="{{ asset('style/webstyle.css') }}">
     </head>
     <body>
         <header>
-            <div class="logo">
-                <img src="" >
-            </div>
-            <div class="cell">
+            <a href="{{ url('home') }}" class="logo">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" >
                 <h1 class="title is-1"> Silmarillion </h1>
+            </a>
+            <div class = "nav">
+                <div class="are-medium">
+                    <a href="{{ url('inscription') }}" >
+                    <button class="button" id="Inscription" >Inscription</button>
+                    </a>
+                </div>
+                {% if user %}
+                    <div class="are-medium">
+                        <a href="{{ url('home') }}" >
+                            <button class="button" id="Deconnexion">Deconnexion</button>
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="are-medium">
+                        <a href="{{ url('connexion') }}" >
+                            <button class="button" id="Connexion">Connexion</button>
+                        </a>
+                    </div>
+                {% endif %}
+                <form action="{{ url('search') }}" method="get" class="nav-search">
+                    <input type="text" name="query" placeholder="Search..." class="input is-primary">
+                    <input type="submit" class="button">
+                </form>
             </div>
-            <div class="are-medium">
-                <a href="{{ url('inscription') }}" >
-                <input class="button" id="Inscription" />
-            </div>
-            <div class="are-medium">
-                <a href="{{ url('connexion') }}" >
-                <button class="button" id="Connexion" >Connexion</button>
-            </div>
+
         </header>
         <main id="main">
             {% block body %}

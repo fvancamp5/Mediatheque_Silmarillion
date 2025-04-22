@@ -1,0 +1,220 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css";
+
+:root {
+    --blue : #14213D;
+    --yellow : #FCA311;
+}
+
+
+header {
+    background-color: var(--blue);
+    color: white !important;
+    width: 100%;
+    height: auto;
+    padding: 0.5rem;  
+    overflow: hidden;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header a {
+    justify-self: left;
+    display: flex;
+    flex: 0 0 auto;
+}
+
+.nav{
+    flex: auto;
+    margin-left: auto;
+    display: inline-flex;
+    flex-wrap: nowrap;
+    border: #FCA311 solid 0.125rem;
+    justify-content: center;
+
+}
+.nav-search {
+    flex: 1; 
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-start; 
+    margin-left: 1rem; 
+    max-width: 1080px; 
+    overflow: hidden; 
+}
+
+.nav-search input[type="text"]{
+    border-radius: 30rem 0 0 30rem;
+}
+.nav-search input[type="submit"]{
+    border-radius: 0 30rem 30rem 0;
+    background-color: var(--yellow);
+    color: white;
+    height: auto;
+    border: white solid 0.125rem; 
+    font-weight: bold;
+}
+.nav-search input[type="submit"]:hover {
+    font-weight: bold;
+}
+.nav-search input[type="submit"]:active {
+    background: var(--blue);
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background: white;
+    color: var(--blue);
+    font-family: 'Arial', sans-serif;
+}
+
+h1{
+    color: var(--blue);
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+form input[type="text"]{
+    color: var(--blue)!important;
+}
+
+.input.is-primary{
+    border-color:  var(--yellow);
+    outline: none;
+    height: auto !important;
+}
+.input.is-primary:focus {
+    border: 2px solid var(--blue);
+    box-shadow: 0 0 2px var(--blue);
+}
+.input.is-primary:not([value = ""]) {
+    background: white;
+}
+
+
+.cell {
+    justify-items: center;
+}
+
+.are-medium {
+    padding: 0 1rem;
+}
+
+.button{
+    background-color: var(--blue);
+    color: white;
+    height: auto;
+    border: white solid 1px ;
+    border-radius: 2rem;
+}
+#Inscription {
+    background-color: var(--yellow)!important;
+}
+
+.button:hover {
+    font-weight: bold;
+}
+
+.button:active {
+    background: var(--yellow);
+}
+#Inscription:active {
+    background: var(--blue)!important;
+}
+
+.logo {
+    max-width: 100%;
+    max-height: 100%;
+    height: 4rem;
+    text-align: center;
+    align-items: center;
+    font-family: "Princess Sofia" ;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-wrap: wrap;
+        padding: 0.01rem;
+    }
+
+    .nav {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        margin-left: 0;
+        border: none;
+        flex-wrap: wrap;
+    }
+
+    .nav-search {
+        width: 100%;
+        margin: 0.5rem 0;
+        flex-wrap: nowrap;
+    }
+
+    .nav-search input[type="text"] {
+        width: 100%;
+    }
+
+    .nav-search input[type="submit"] {
+        width: 30%;
+    }
+
+    .are-medium {
+        padding: 0.01rem;
+    }
+
+    .button {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 460px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 0.5rem;
+    }
+
+    .nav {
+        flex-wrap: wrap;
+        align-items: center;
+        width: 100%;
+    }
+
+    .nav-search {
+        flex-wrap: nowrap;
+        align-items: center;
+        width: 100%;
+    }
+
+    .nav-search input[type="text"] {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+
+    .nav-search input[type="submit"] {
+        width: 50%;
+        margin: 0.5rem 0;
+    }
+
+    .button {
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+}
