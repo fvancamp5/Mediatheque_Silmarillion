@@ -16,7 +16,8 @@ final class SignController extends AbstractController
     {
         return $this->render('sign/index.html.twig', [
             'page_name' => 'Connexion',
-            'user' => $request->query->get('user')
+            'user' => $request->query->get('user'),
+            'connexion' => true
         ]);
     }
 
@@ -25,7 +26,8 @@ final class SignController extends AbstractController
     {
         return $this->render('sign/index.html.twig', [
             'page_name' => 'Inscription',
-            'user' => $request->query->get('user')
+            'user' => $request->query->get('user'),
+            'connexion' => false
         ]);
     }
 }

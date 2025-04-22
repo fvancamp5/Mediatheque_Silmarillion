@@ -6,5 +6,11 @@
 
 {% block body %}
     <h1>HELLO</h1>
+    {% if user %}
+        <p>Prénom: {{ user.firstname }}</p>
+        <p>Nom: {{ user.lastname }}</p>
+        <p>Email: {{ user.email }}</p>
+        <p>Mot de passe: {{ user.password }}</p>
+    {% endif %}
 
 {% endblock %}

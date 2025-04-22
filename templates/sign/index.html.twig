@@ -3,10 +3,46 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{% block title%} {% endblock %}</title>
+        <title>{{page_name}}</title>
         <link rel="stylesheet" href="{{ asset('style/webstyle.css') }}">
     </head>
     <body>
+        <form method="post" action="{{ path('home') }}">
+            <!-- si on render avec la condition connexion on montre que la page de connexion 
+                 à l'inverse on render le formulaire d'insciption -->
+            {% if connexion == false %}
+                <div class="form-group">
+                    <label for="firstname">Prénom:</label>
+                    <input type="text" id="firstname" name="firstname" class="input is-primary" required>
 
+                    <label for="lastname">Nom:</label>
+                    <input type="text" id="lastname" name="lastname" class="input is-primary" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" class="input is-primary" required>
+
+                    <label for="password">Mot de passe:</label>
+                    <input type="password" id="password" name="password" class="input is-primary" required>
+
+                    <label for="confirm_password">Confirmer le mot de passe:</label>
+                    <input type="password" id="confirm_password" name="confirm_password" class="input is-primary" required>
+
+                    <button type="submit" class="button" id="Inscription">S'inscrire</button>
+                    <a href="{{ url('connexion') }}" class="button" id="Connexion">Déjà inscrit ?</a>
+                </div>
+            {% elseif connexion == true %}
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" class="input is-primary" required>
+
+                    <label for="password">Mot de passe:</label>
+                    <input type="password" id="password" name="password" class="input is-primary" required>
+
+                    <button type="submit" class="button" id="Connexion">Se connecter</button>
+                    <a href="{{ url('inscription') }}" id="Inscription">Se créer un compte</a>
+                </div>
+            {% endif %}
+
+        </form>
     </body>
 </html>
