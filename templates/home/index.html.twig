@@ -5,12 +5,29 @@
 {% endblock %}
 
 {% block body %}
-    <h1>HELLO</h1>
-    {% if user %}
-        <p>Prénom: {{ user.firstname }}</p>
-        <p>Nom: {{ user.lastname }}</p>
-        <p>Email: {{ user.email }}</p>
-        <p>Mot de passe: {{ user.password }}</p>
-    {% endif %}
+    <div class="container">
+        <h1 class="title is-primary">Bienvenue chez Silmarillion !</h1>
+        <h2 class="title is-secondary">Vous pouvez ici emprunter des DVD, des livres ou encore des jeux vidéo.</h2>
+
+        {% if user %}
+            <p>Prénom: {{ user.firstname }}</p>
+            <p>Nom: {{ user.lastname }}</p>
+            <p>Email: {{ user.email }}</p>
+            <p>Mot de passe: {{ user.password }}</p>
+        {% endif %}
+        
+        <h2 class="title is-secondary media">Nos médias :</h2> 
+        
+        <div class="content">
+            {% for media in medias %}
+                {% if media.state == true %}
+                    <a href="{{ url('home/' ~ media.title ) }}" class="media-item">
+                        <img src="{{ asset('images/' ~ media.image) }}">
+                        <p> {{media.title}} </p>
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
 
 {% endblock %}
