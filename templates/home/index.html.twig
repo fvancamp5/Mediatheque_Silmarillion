@@ -10,10 +10,15 @@
         <h2 class="title is-secondary">Vous pouvez ici emprunter des DVD, des livres ou encore des jeux vidéo.</h2>
 
         {% if user %}
-            <p>Prénom: {{ user.firstname }}</p>
-            <p>Nom: {{ user.lastname }}</p>
-            <p>Email: {{ user.email }}</p>
-            <p>Mot de passe: {{ user.password }}</p>
+            <div class="personnal">
+                <a href="{{ path('account') }}">
+                    <button class="button" id="account"> Mon Compte <img src="{{asset('images/account_icon.png')}}" class="icon" > </button>
+                </a>
+                <a href="{{ path('history') }}">
+                    <button class="button" id="history">Mes Emprunts <img src="{{asset('images/clock_icon.png')}}" class="icon"> </button>
+                </a>
+            </div>
+
         {% endif %}
         
         <h2 class="title is-secondary media">Nos médias :</h2> 
