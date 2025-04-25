@@ -28,12 +28,9 @@ header a {
 
 main {
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-content: center;
     padding: 0 0.5rem;
-    height: 100vh;
 }
+
 
 html, body {
     width: 100%;
@@ -45,7 +42,24 @@ html, body {
     padding: 0;
     overflow-x: hidden;
     box-sizing: border-box!important;
+
 }
+
+footer {
+    background-color: var(--yellow);
+    height: 3.5vh;
+    justify-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer p {
+    font-size: 2vh;
+    text-decoration: none !important;
+    color: var(--blue) !important;
+}
+
 
 h1{
     color: var(--blue);
@@ -56,6 +70,21 @@ h1{
 img {
     max-width: 100%;
     max-height: 100%;
+}
+
+thead {
+    width: 100%;
+    height: auto;
+    justify-content: center;
+}
+
+td {
+    text-align: center;
+    align-content: center;
+    padding: 0.5rem;
+    font-size: clamp(2rem, 3vw, 8rem) !important;
+    font-weight: 500!important;
+    color: var(--blue);
 }
 
 .nav{
@@ -108,6 +137,8 @@ img {
     align-content: flex-start;
 }
 
+
+
 .title.is-primary {
     font-size: 4rem;
     font-weight: bold;
@@ -149,12 +180,17 @@ input::placeholder {
     padding: 0 1rem;
 }
 
-.button{
-    background-color: var(--blue);
-    color: white;
+.button, .useless{
+    font-size: 1rem;
+    font-weight: 500!important;
+    padding: 0.5rem 1rem;
     height: auto;
     border: white solid 1px ;
     border-radius: 2rem;
+}
+.button {
+    background-color: var(--blue);
+    color: white;
 }
 #Inscription {
     background-color: var(--yellow)!important;
@@ -170,6 +206,17 @@ input::placeholder {
 #Inscription:active {
     background: var(--blue)!important;
 }
+
+.useless {
+    background-color: rgb(195, 195, 195);
+    color: #444444;
+    cursor: not-allowed;
+}
+
+.useless:hover {
+    cursor: not-allowed;
+}
+
 
 .title.is-secondary.media {
     text-align: left;
@@ -199,6 +246,82 @@ input::placeholder {
     width: 100%;
 }
 
+.media-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.media-page h1 {
+    margin-bottom: 4rem;
+    font-size: clamp(3rem, 5vw, 12rem) !important;
+    font-weight: 800!important;
+    align-content: center !important;
+    text-align: center !important;
+}
+
+.media-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.media-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch; 
+    width: 100%;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.media-image {
+    flex: 1; 
+    display: flex;
+    justify-content: center;
+    max-width: 50%;
+    height: auto; 
+}
+
+.media-details {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 50%;
+    height: auto; 
+}
+
+.media-details table {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.media-details h2 {
+    margin: 1rem 0;
+    font-size: clamp(2rem, 3vw, 8rem) !important;
+    font-weight: 600!important;
+    align-content: center !important;
+    text-align: left !important;
+}
+
+.media-details form {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+
 
 .media-item{
     display: flex;
@@ -227,6 +350,25 @@ input::placeholder {
     font-weight: 700!important;
     font-size: clamp(1rem, 1.75vw, 4rem) !important;
     text-align: center;
+}
+
+@media (min-width: 769px) and (orientation: portrait) {
+    .media-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    .media-image {
+        max-width: 100%;
+        margin-bottom: 2rem;
+        align-items: unset !important;
+    }
+    .media-details {
+        max-width: 100%;
+    }
+    td {
+        width: auto!important;
+        vertical-align: top;
+    }
 }
 
 @media (max-width: 768px) {
@@ -309,5 +451,21 @@ input::placeholder {
 
     h1 {
         font-size: 1.5rem;
+    }
+
+    .media-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    .media-image {
+        max-width: 100%;
+        margin-bottom: 2rem;
+    }
+    .media-details {
+        max-width: 100%;
+    }
+    td {
+        width: auto!important;
+        vertical-align: top;
     }
 }
