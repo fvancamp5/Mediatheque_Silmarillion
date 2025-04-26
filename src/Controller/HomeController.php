@@ -102,7 +102,7 @@ final class HomeController extends AbstractController{
             'type' => 'Jeu vidéo',
             'image' => 'ds_3.png',
             'description' => 'Dark Souls 3 est un jeu de rôle et d\'action développé par From Software et publié par Bandai Namco Entertainment. ',
-            'state' => true
+            'state' => false
         ];
         $media3 = [
             'id' => 3,
@@ -136,7 +136,7 @@ final class HomeController extends AbstractController{
             }
         }
     
-        if (!isset($medias[$id])) {
+        if (!$media) {
             throw $this->createNotFoundException('Media not found');
         }
     
