@@ -22,7 +22,7 @@
                 <p>Description : </p>
                 <h2 class="title is-secondary">{{ media.description }}</h2>
 
-                {% if media.state == true %}
+                {% if media.status == true %}
                     <form action="{{ path('home_id', { id: media.id }) }}" method="get">
                         <input type="submit" class="button" value="Emprunter" id="emprunter">
                     </form>
