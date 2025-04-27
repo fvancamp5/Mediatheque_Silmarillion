@@ -89,6 +89,14 @@ td {
     color: var(--blue);
 }
 
+canvas {
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
+    margin-top: 2rem;
+    object-fit: contain;
+  }  
+
 
 /* --------------   Classes  ------------------ */
 
@@ -137,7 +145,7 @@ td {
     justify-content: center;
     width: 100%;
     height: 100%;
-    padding: 0;
+    padding: 2rem;
     align-items: center;
     flex-direction: column;
 }
@@ -286,7 +294,7 @@ input::placeholder {
     text-align: center !important;
 }
 
-.media-content {
+.media-content, .account {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -314,7 +322,7 @@ input::placeholder {
     height: auto; 
 }
 
-.media-details, .legal {
+.media-details, .legal, .personal-info {
     flex: 1; 
     display: flex;
     flex-direction: column;
@@ -323,7 +331,7 @@ input::placeholder {
     height: auto; 
 }
 
-.media-details {
+.media-details, .personal-info {
     max-width: 50%;
 }
 
@@ -332,7 +340,7 @@ input::placeholder {
     margin: 1rem auto;
 }
 
-.media-details,.legal h2 {
+.media-details,.legal, .personal-info h2 {
     margin: 1rem 0;
     font-size: clamp(2rem, 3vw, 8rem) !important;
     font-weight: 600!important;
@@ -345,8 +353,6 @@ input::placeholder {
     justify-content: center;
     width: 100%;
 }
-
-
 
 .media-item{
     display: flex;
@@ -368,12 +374,25 @@ input::placeholder {
     box-shadow: 0 0 2px var(--blue);
 }
 
-.media-item, .legal p {
+.media-item, .legal, .personal-info p {
     text-decoration: none;
     color: var(--blue);
     font-weight: 700!important;
     font-size: clamp(1rem, 1.75vw, 4rem) !important;
     text-align: center;
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    justify-content: space-evenly;
+    margin-top: 0.5rem;
+}
+
+.filters .button {
+    font-size: clamp(1rem, 2.5vw, 4rem) !important;
 }
 
 
@@ -488,7 +507,7 @@ input::placeholder {
         font-size: 1.5rem;
     }
 
-    .media-content {
+    .media-content, .account {
         flex-direction: column;
         align-items: center;
     }
@@ -496,8 +515,9 @@ input::placeholder {
         max-width: 100%;
         margin-bottom: 2rem;
     }
-    .media-details {
+    .media-details, .legal, .personal-info {
         max-width: 100%;
+        width: 100%;
     }
     td {
         width: auto!important;

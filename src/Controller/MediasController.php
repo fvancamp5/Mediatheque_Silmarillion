@@ -8,13 +8,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class HomeController extends AbstractController{
+final class MediasController extends AbstractController{
 
-    #[Route('/', name: 'home', methods: ['GET', 'POST'])]
-    function index(Request $request): Response {
-        //on initialise user sinon on a une erreur
+
+#[Route('medias/{id}', name: 'home_id', methods: ['GET'])]
+    function indexMedia(int $id): Response {
         $user= null;
 
+        //medias en static pour tester
         $media1 = [
             'id' => 1,
             'title' => 'Dark Souls',
@@ -31,7 +32,7 @@ final class HomeController extends AbstractController{
             'type' => 'Jeu vidéo',
             'image' => 'ds_3.png',
             'description' => 'Dark Souls 3 est un jeu de rôle et d\'action développé par From Software et publié par Bandai Namco Entertainment. ',
-            'state' => true
+            'state' => false
         ];
         $media3 = [
             'id' => 3,
@@ -55,33 +56,24 @@ final class HomeController extends AbstractController{
             $media1,
             $media2,
             $media3,
-            $media4
+            $media4,
         ];
 
-
-        if ($request->isMethod('POST')) {
-            $firstname = $request->request->get('firstname');
-            $lastname = $request->request->get('lastname');
-            $email = $request->request->get('email');
-            $password = $request->request->get('password');
-            //on stock dans user les infos et on les render 
-            $user = [
-                'firstname' => $firstname,
-                'lastname' => $lastname,
-                'email' => $email,
-                'password' => $password
-            ];
+        foreach ($medias as $elem) {
+            if ($elem['id'] == $id) {
+                $media = $elem;
+                break;
+            }
         }
-
-        return $this->render('home/index.html.twig', [
-            //render la page avec le titre et les infos de l'utilisateur
+    
+        if (!$media) {
+            throw $this->createNotFoundException('Media not found');
+        }
+    
+        return $this->render('medias/index.html.twig', [
             'page_name' => 'Accueil',
             'user' => $user,
-            'medias' => $medias
+            'media' => $media
         ]);
     }
-
-    
-
-
 }
