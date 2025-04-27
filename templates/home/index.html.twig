@@ -25,7 +25,7 @@
         
         <div class="content">
             {% for media in medias %}
-                {% if media.state == true %}
+                {% if media.status == true %}
                     <a href="{{ path('home_id', { id: media.id }) }}" class="media-item">
                         <img src="{{ asset('images/' ~ media.image) }}" alt="{{ media.title }}">
                         <p>{{ media.title }}</p>

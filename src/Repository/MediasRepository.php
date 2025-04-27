@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Repository;
+
+use App\Entity\Medias;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\DBAL\Connection;
+
+/**
+ * @extends ServiceEntityRepository<Medias>
+ */
+class MediasRepository extends ServiceEntityRepository
+{
+    private Connection $connection;
+
+    public function __construct(ManagerRegistry $registry, Connection $connection)
+    {
+        parent::__construct($registry, Medias::class);
+        $this->connection = $connection;
+    }
+
+    public function search(string $query): array
+    {
+        $sql = 'SELECT * FROM medias WHERE title LIKE :query OR author LIKE :query OR type LIKE :query OR description LIKE :query';
+        //on utilise connection a la place de pdo car pas inclus dans doctrine
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindValue('query', '%' . $query . '%');
+        $result = $stmt->executeQuery();
+
+        //la methode renvoie un tableau associatif et pas un tableau d'objets
+        return $result->fetchAllAssociative(); 
+    }
+}

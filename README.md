@@ -55,5 +55,5 @@ https://www.figma.com/proto/i77g0HxKCzoeSqL1fbiiYo/Web-Rattrapage?page-id=0%3A1&
    
    - [Modeles de Données (en partant du principe qu'un exemplaire d'un media est unique et que si plusieurs personnes empruntent le meme medias ce seront deux medias différents)](imgREADME/Data_Models_mediatheque.pdf)
 
-- Elle est faite sur un SQLserver créé depuis PHPmyadmin
+   - Creation des tables avce ORM doctrine de Symfony, puis on migre sur le server mySQL (à voir dans migrations/Version20250427162424.php)
 
