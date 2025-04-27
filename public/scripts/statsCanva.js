@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    document.querySelectorAll(".filter").forEach(button => {
+    document.querySelectorAll(".button").forEach(button => {
         button.addEventListener("click", function () {
             let filter = this.getAttribute("data-filter");
             currentFilter = filter || "auteur"; 
