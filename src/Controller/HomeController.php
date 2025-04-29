@@ -29,7 +29,14 @@ final class HomeController extends AbstractController{
             
                 if ($userDetails) {
                     // Save user details in the session
-                    $session->set('user', $userDetails);
+                    $session->set('user', [
+                        'id' => $userDetails['id'],
+                        'firstname' => $userDetails['firstname'],
+                        'lastname' => $userDetails['lastname'],
+                        'email' => $userDetails['email'],
+                        'password' => $userDetails['password'],
+                        'status' => $userDetails['status'], 
+                    ]);
             
                     return $this->redirectToRoute('home');
                 }
@@ -47,7 +54,7 @@ final class HomeController extends AbstractController{
             $lastname = $request->request->get('lastname');
             $email = $request->request->get('email');
             $password = $request->request->get('password');
-
+            
             //vérifie si l'utilisateur existe
             if ($user->add($firstname, $lastname, $email, $password)) {
                 return $this->redirectToRoute('home');

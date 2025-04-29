@@ -20,8 +20,10 @@
             </div>
 
         {% endif %}
-        
-        <h2 class="title is-secondary media">Nos médias :</h2> 
+        <div class="personnal">
+            <h2 class="title is-secondary media">Nos médias :  </h2> 
+        </div>
+        {% if user.status == 1 %}<a href="{{ path('ajout') }}" class="button">Ajouter +</a> {% endif %}
         
         <div class="content">
             {% for media in medias %}

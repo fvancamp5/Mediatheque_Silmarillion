@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Attribute\Route;
 final class MediasController extends AbstractController{
 
 
-#[Route('medias/{id}', name: 'home_id', methods: ['GET', 'POST'])]
+#[Route('medias/{id}/', name: 'home_id', methods: ['GET', 'POST'])]
     function indexMedia(SessionInterface $session,int $id, Request $request, MediasRepository $medias, LoanRepository $loan): Response {
 
         // Récupère l'utilisateur connecté avce la session (pas avec des cookies)
@@ -57,4 +57,82 @@ final class MediasController extends AbstractController{
             'condition' => $condition,
         ]);
     }
+
+#[Route ('medias/{id}/modification/', name: 'modification', methods: ['GET', 'POST'])]
+    function modificationMedia (SessionInterface $session,int $id, Request $request, MediasRepository $medias){
+
+        $user = $session->get('user');
+        
+        if ($user === null || $user['status'] !== 1) {
+            return $this->redirectToRoute('connexion');
+        }
+        
+        $media = $medias->find($id);
+
+        //si c en post c'est que c'est le form de modification soumis
+        if ($request->getMethod() === 'POST') {
+            $title = $request->request->get('title');
+            $author = $request->request->get('author');
+            $type = $request->request->get('type');
+            $description = $request->request->get('description');
+            $image = $request->request->get('image');
+
+            //si le form est soumis, on modifie le media
+            if ($medias->update($id, $title, $author, $type, $description,  $image)) {
+                return $this->redirectToRoute('home');
+            } 
+        }
+
+        return $this->render('medias/modif.html.twig', [
+            'page_name' => 'Accueil',
+            'user' => $user,
+            'media' => $media,
+        ]);
+    }
+
+#[Route ('medias/{id}/delete/', name: 'suppression', methods: ['GET'])]
+    function deleteMedia (SessionInterface $session,int $id, Request $request, MediasRepository $medias){
+
+        $user = $session->get('user');
+        
+        if ($user === null || $user['status'] !== 1) {
+            return $this->redirectToRoute('connexion');
+        }
+
+        //si le form est soumis on supprime le media
+        $medias->delete($id);
+
+        return $this->redirectToRoute('home');
+    }
+
+#[Route ('/add', name: 'ajout', methods: ['GET', 'POST'])]
+    function addMedia (SessionInterface $session, Request $request, MediasRepository $medias){
+
+        $user = $session->get('user');
+        
+        if ($user === null || $user['status'] !== 1) {
+            return $this->redirectToRoute('connexion');
+        }
+
+        if ($request->getMethod() === 'POST') {
+            $title = $request->request->get('title');
+            $author = $request->request->get('author');
+            $type = $request->request->get('type');
+            $description = $request->request->get('description');
+            $image = $request->request->get('image');
+
+            //si le form est soumis, on modifie le media
+            if ($medias->add($title, $author, $type, $description,  $image)) {
+                return $this->redirectToRoute('home');
+            } 
+        }
+
+        return $this->render('medias/add.html.twig', [
+            'page_name' => 'Ajout Media',
+            'user' => $user,
+        ]);
+    }
+
 }
+
+

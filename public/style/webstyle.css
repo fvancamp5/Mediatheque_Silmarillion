@@ -31,7 +31,9 @@ main {
     width: 100%;
     padding: 0 0.5rem;
 }
-
+main input, main .button {
+    font-size: clamp(1rem, 1.5vw, 2.5rem) !important;
+}
 
 html, body {
     display: flex;
@@ -81,11 +83,12 @@ thead {
 }
 
 td {
-    text-align: center;
+    text-align: center !important;
+    max-width: 50% !important;
     align-content: center;
     padding: 0.5rem;
     font-size: clamp(2rem, 3vw, 8rem) !important;
-    font-weight: 500!important;
+    font-weight: 500 !important;
     color: var(--blue);
 }
 
@@ -148,6 +151,7 @@ canvas {
     height: 100%;
     padding: 2rem;
     align-items: center;
+    align-content: center;
     flex-direction: column;
 }
 
@@ -164,6 +168,7 @@ canvas {
     border-radius: 0.5rem !important;
     font-size: 2rem;
     font-weight: 700 !important;
+    padding: 0.5rem 1rem;
 }
 
 .icon {
@@ -225,6 +230,12 @@ input::placeholder {
 }
 #Inscription {
     background-color: var(--yellow)!important;
+}
+#Delete {
+    width: 60%;
+    background-color: red!important;
+    color: white!important;
+    font-weight: 700!important;
 }
 
 .button:hover {
@@ -297,22 +308,22 @@ input::placeholder {
 
 .media-content, .account {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
     width: 100%;
     gap: 2rem;
     margin-bottom: 2rem;
 }
+.account{
+    flex-direction: row;
+    align-items: flex-start;
+}
 
 .media-content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: stretch; 
-    width: 100%;
-    gap: 2rem;
-    margin-bottom: 2rem;
+    align-items: center;
+    margin: 2rem 0;
+}
+.column{
+    flex-direction: column !important;
 }
 
 .media-image {
@@ -320,7 +331,7 @@ input::placeholder {
     display: flex;
     justify-content: center;
     max-width: 50%;
-    height: auto; 
+    height: 50vh !important; 
 }
 
 .media-details, .legal, .personal-info, .history {
@@ -335,10 +346,15 @@ input::placeholder {
 .media-details, .personal-info {
     max-width: 50%;
 }
+.full-width {
+    max-width: 100%;
+    width: 100% !important;
+}
 .history {
     max-width: 100% !important;
     align-items: stretch !important;
     margin: 0 3rem !important;
+    width: 100%;
 }
 
 .legal {
@@ -371,8 +387,14 @@ input::placeholder {
 .history table th {
     font-size: clamp(1rem, 2.5vw, 4rem) !important;
     font-weight: 700!important;
-    text-align: left !important;
+    text-align: center !important;
+    text-decoration: underline;
+    align-content: center !important;
     color: var(--blue);
+    max-width: 50%;
+}
+.history table td {
+    width: 50% !important;
 }
 .history td a {
     max-width: 70%;
@@ -383,8 +405,12 @@ input::placeholder {
 
 .media-details form {
     display: flex;
-    justify-content: center;
     width: 100%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: stretch;
+    align-items: center;
+    gap: 1rem;
 }
 
 .media-item{
