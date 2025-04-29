@@ -61,5 +61,13 @@ https://www.figma.com/proto/i77g0HxKCzoeSqL1fbiiYo/Web-Rattrapage?page-id=0%3A1&
    
    - [Modeles de Données (en partant du principe qu'un exemplaire d'un media est unique et que si plusieurs personnes empruntent le meme medias ce seront deux medias différents)](imgREADME/Data_Models_mediatheque.pdf)
 
-   - Creation des tables avce ORM doctrine de Symfony, puis on migre sur le server mySQL (à voir dans migrations/Version20250427162424.php)
+   - Nous avons donc une BDD avec 4 tables : 
+        - user contenant les informations des utilisateur du site
+        - medias contenant les informations des médias
+        - loan contenant les informations des emprunts réalises
+        - history qui est une copie de loan ou on ne peut retirer des éléments
+
+   - Creation des tables avec l'ORM doctrine de Symfony, puis on migre sur le server mySQL (à voir dans migrations/Version20250427162424.php). 
+
+En partant du principe qu'un administrateur est un utilisateur avec des privilèges, un administrateur se connecte avec son compte comme un utilisateur normal, mais aura des accès supplémentaires. Le status admin est définit par le booléen status de la table user.
 

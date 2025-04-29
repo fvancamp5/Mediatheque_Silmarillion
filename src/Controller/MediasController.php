@@ -32,6 +32,10 @@ final class MediasController extends AbstractController{
         $media = $medias->find($id);
 
         if ($request->getMethod() === 'POST') {
+            if ($user === null) {
+                //si le user n'est pas connécté et qu'il veut amprunter, ca lui demande de se connecter
+                return $this->redirectToRoute('connexion');
+            }
             if ($request->request->get('emprunter')){
                 //emprunter le media
                 if ($loan->add($user['id'], $id)) {

@@ -1,6 +1,6 @@
-document.addEventListener("DOMContentLoaded", function () {
-    console.log(medias); // Debugging: Check the structure of the medias array
+//reprise et modifs de web4all
 
+document.addEventListener("DOMContentLoaded", function () {
     function countByKey(key) {
         let counts = {};
         medias.forEach(media => {
@@ -8,19 +8,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 counts[media[key]] = (counts[media[key]] || 0) + 1;
             }
         });
-        console.log(`Counts for key "${key}":`, counts); // Debugging
         return counts;
     }
 
     let dataSets = {
+        titre : countByKey('title'),
         auteur: countByKey('author'),
         type: countByKey('type')
     };
 
     let currentFilter = "auteur";
-
-    console.log("Data sets:", dataSets); // Debugging
-    console.log("Current filter:", currentFilter); // Debugging
 
     let ctx = document.getElementById('Medias').getContext('2d');
     let Medias = new Chart(ctx, {
@@ -48,7 +45,6 @@ document.addEventListener("DOMContentLoaded", function () {
             let filter = this.getAttribute("data-filter");
             currentFilter = filter || "auteur";
 
-            // Update the chart data
             Medias.data.labels = Object.keys(dataSets[currentFilter]);
             Medias.data.datasets[0].data = Object.values(dataSets[currentFilter]);
             Medias.update();

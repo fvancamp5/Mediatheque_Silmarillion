@@ -28,6 +28,13 @@ class LoanRepository extends ServiceEntityRepository
         $stmt->bindValue('idMedias', $idMedias);
         try {
             $stmt->executeQuery();
+            //si l'emprunt reussi on le met dans la table history
+            $historySql = 'INSERT INTO history (id_user, id_media) VALUES (:idUser, :idMedias)';
+            $historyStmt = $this->connection->prepare($historySql);
+            $historyStmt->bindValue('idUser', $idUser);
+            $historyStmt->bindValue('idMedias', $idMedias);
+            $historyStmt->executeQuery();
+
             //si l'emprunt reussi le medias n'est plus dispo
             $newsql = 'UPDATE medias SET status = 0 WHERE id = :idMedias';
             $stmt = $this->connection->prepare($newsql);
