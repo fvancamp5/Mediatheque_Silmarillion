@@ -31,4 +31,15 @@ class MediasRepository extends ServiceEntityRepository
         //la methode renvoie un tableau associatif et pas un tableau d'objets
         return $result->fetchAllAssociative(); 
     }
+
+    //verifie si le media est un emprunt du user actuel
+    public function isLoan(int $idUser, int $idMedias): bool
+    {
+        $sql = 'SELECT * FROM loan WHERE id_user = :idUser AND id_media = :idMedias';
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindValue('idUser', $idUser);
+        $stmt->bindValue('idMedias', $idMedias);
+        $result = $stmt->executeQuery();
+        return !empty($result->fetchAllAssociative());
+    }
 }

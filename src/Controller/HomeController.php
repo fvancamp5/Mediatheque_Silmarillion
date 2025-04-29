@@ -24,12 +24,16 @@ final class HomeController extends AbstractController{
 
             //vérifie si l'utilisateur existe
             if ($user->checkLogsin($email, $password)) {
-                $session->set('user', [
-                    'email' => $email,
-                    'password' => $password,
-                ]);
-                return $this->redirectToRoute('home');
-            } 
+                // Fetch user details from the database
+                $userDetails = $user->getUserDetails($email);
+            
+                if ($userDetails) {
+                    // Save user details in the session
+                    $session->set('user', $userDetails);
+            
+                    return $this->redirectToRoute('home');
+                }
+            }
             else {
                 // on met error en session pour afficher le message d'erreur dans connexion et inscription
                 $session->set('error', 'Identifiants incorrects');

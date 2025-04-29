@@ -49,7 +49,13 @@ https://www.figma.com/proto/i77g0HxKCzoeSqL1fbiiYo/Web-Rattrapage?page-id=0%3A1&
 
 **code**
 
-- Le code est architecturé selon le modèle Model View Crontoller mais sous Symfony, ce qui implique que les Vues sont dans le folder templates, les Controllers bien Controller et Model est à la place divisé en deux folder Entity et Repository (Entity va faire le lien avec la bdd, definir ou garder les champs des tables et proposer des methodes pour recuper les objets associés grâce à doctrine. Tandis que Repository va nous permettre de faire nos propres methodes d'objets afin de réaliser des requettes non pas avec PDO mais avec connection)
+- Le code est architecturé selon le modèle Model View Crontoller mais sous Symfony, ce qui implique des changemments de nom :
+    - Les Vues sont dans le folder templates
+    - Les Controllers sont dans src/Controller
+    - Model est à la place divisé en deux folder src/Entity et src/Repository 
+
+ (Entity va faire le lien avec la bdd, definir ou garder les champs des tables et proposer des methodes pour recuper les objets associés grâce à doctrine. Tandis que Repository va nous permettre de faire nos propres methodes d'objets afin de réaliser des requettes non pas avec PDO mais avec connection)
+ 
 - Pour la création de la Base De Données, un dictionnaire, un MCD MLD MPD ont été fait pour définir les besoins et le format de la BDD.
    - Dictionnaire de données : ![alt text](imgREADME/image-7.png)
    

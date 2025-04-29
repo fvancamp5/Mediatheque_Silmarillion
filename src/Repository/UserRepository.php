@@ -53,4 +53,14 @@ class UserRepository extends ServiceEntityRepository
         }
         return false;
     }
+
+    public function getUserDetails(string $email)
+    {
+        $sql = 'SELECT id, firstname, lastname, email, password FROM user WHERE email = :email';
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindValue('email', $email);
+        $result = $stmt->executeQuery()->fetchAssociative();
+
+        return $result ;
+    }
 }

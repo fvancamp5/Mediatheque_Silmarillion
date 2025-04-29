@@ -6,14 +6,17 @@ use App\Repository\MediasRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 
 final class SearchController extends AbstractController
 {
     #[Route('recherche/', name: 'search')]
-    public function index(Request $request, MediasRepository $medias): Response {
+    public function index(SessionInterface $session, Request $request, MediasRepository $medias): Response {
         $user = null;
+        // Récupère l'utilisateur connecté avce la session (pas avec des cookies)
+        $user = $session->get('user');
         $query = null;
         $results = [];
         

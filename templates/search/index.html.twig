@@ -9,12 +9,10 @@
         <h1 class="title is-primary"> Resultats pour : {{query}}</h1>
         <div class="content">
             {% for media in medias %}
-                {% if media.status == true %}
-                    <a href="{{ path('home_id', { id: media.id }) }}" class="media-item">
-                        <img src="{{ asset('images/' ~ media.image) }}" alt="{{ media.title }}">
-                        <p>{{ media.title }}</p>
-                    </a>
-                {% endif %}
+                <a href="{{ path('home_id', { id: media.id }) }}" class="media-item">
+                    <img src="{{ asset('images/' ~ media.image) }}" alt="{{ media.title }}">
+                    <p>{{ media.title }}</p>
+                </a>
             {% endfor %}
         </div>
     </div>

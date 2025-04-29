@@ -23,10 +23,14 @@
                 <h2 class="title is-secondary">{{ media.description }}</h2>
 
                 {% if media.status == true %}
-                    <form action="{{ path('home_id', { id: media.id }) }}" method="get">
-                        <input type="submit" class="button" value="Emprunter" id="emprunter">
+                    <form action="{{ path('home_id', { id: media.id }) }}" method="post">
+                        <input type="submit" class="button" value="Emprunter" id="emprunter" name = "emprunter">
                     </form>
-                {% else %}
+                {% elseif media.status == false and condition == true %}
+                    <form action="{{ path('home_id', { id: media.id }) }}" method="post">
+                        <input type="submit" class="button" value="Retourner" id="retourner" name = "retourner">
+                    </form>
+                {% elseif media.status == false and condition == false %}
                     <form >
                         <!-- inutile, juste pour la mise en forme -->
                         <input type="button" class="useless" value="Emprunter" id="emprunter">

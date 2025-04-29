@@ -322,7 +322,7 @@ input::placeholder {
     height: auto; 
 }
 
-.media-details, .legal, .personal-info {
+.media-details, .legal, .personal-info, .history {
     flex: 1; 
     display: flex;
     flex-direction: column;
@@ -334,18 +334,48 @@ input::placeholder {
 .media-details, .personal-info {
     max-width: 50%;
 }
+.history {
+    max-width: 100%;
+    
+}
 
 .legal {
     max-width: 80%;
     margin: 1rem auto;
 }
 
-.media-details,.legal, .personal-info h2 {
+.media-details, .legal, .personal-info h2 {
     margin: 1rem 0;
     font-size: clamp(2rem, 3vw, 8rem) !important;
     font-weight: 600!important;
     align-content: center !important;
     text-align: left !important;
+    white-space: normal !important;
+}
+
+.personal-info table th {
+    font-size: clamp(1rem, 2.5vw, 4rem) !important;
+    font-weight: 700!important;
+    text-align: left !important;
+    color: var(--blue);
+}
+.personal-info table td {
+    font-size: clamp(0.6rem, 2vw, 3rem) !important;
+    font-weight: 500!important;
+    text-align: left !important;
+    color: var(--blue);
+    height: auto !important;
+}
+.history table th {
+    font-size: clamp(1rem, 2.5vw, 4rem) !important;
+    font-weight: 700!important;
+    text-align: left !important;
+    color: var(--blue);
+}
+.history td a {
+    max-width: 70%;
+    height: auto;
+    margin: 0 auto; 
 }
 
 .media-details form {

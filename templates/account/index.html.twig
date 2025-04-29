@@ -6,12 +6,16 @@
 
 {% block body %}
     <script> const medias = {{ medias|json_encode|raw }}; </script>
+    <!-- reprise et modifs de l'ancienne version -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ asset('scripts/statsCanva.js') }}" ></script>
 
     <div class="container">
         <h1 class="title is-primary"> Mon compte </h1>
 
         <div class="account">
             <div class="personal-info">
+            {% if not medias is empty %}
                 <h2 class="title is-secondary"> Statistiques des emprunts</h2>
 
                 <canvas id="Medias"></canvas>
@@ -20,6 +24,10 @@
                     <button class="button" data-filter="auteur"> Auteurs </button>
                     <button class="button" data-filter="type"> Types </button>
                 </div>
+            {% else %}
+                <h2 class="title is-secondary"> Pas d'emprunts effectués </h2>
+            {% endif %}
+
             </div>
             <div class="personal-info">
                 <h1 class="title is-secondary"> Informations personnelles</h1>
@@ -30,11 +38,5 @@
             </div>
         </div> 
     </div>
-
-
-    <!-- reprise et modifs de l'ancienne version -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="{{ asset('scripts/statsCanva.js') }}" ></script>
-    <!-- def ici sinon pas de recup via twig -->
 
 {% endblock %}
