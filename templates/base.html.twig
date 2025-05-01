@@ -33,8 +33,8 @@
                         </a>
                     </div>
                 {% endif %}
-                <form action="{{ url('search') }}" method="post" class="nav-search">
-                    <input type="text" name="query" placeholder="Recherche..." class="input is-primary">
+                <form action="{{ url('search') }}" method="post" class="nav-search" id="form">
+                    <input type="text" name="query" id="query" placeholder="Recherche..." class="input is-primary">
                     <input type="submit" class="button">
                 </form>
             </div>
@@ -50,5 +50,6 @@
             </a>
         
         </footer>
+        <script src="{{ asset('scripts/search_validation.js') }}"></script>
     </body>
 </html>

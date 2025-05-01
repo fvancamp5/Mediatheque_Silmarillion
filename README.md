@@ -72,6 +72,18 @@ https://www.figma.com/proto/i77g0HxKCzoeSqL1fbiiYo/Web-Rattrapage?page-id=0%3A1&
 En partant du principe qu'un administrateur est un utilisateur avec des privilèges, un administrateur se connecte avec son compte comme un utilisateur normal, mais aura des accès supplémentaires. Le status admin est définit par le booléen status de la table user.
 
 
-## ATTENTION !
+## Utilisation
 
-**Les clés secrètent sont écrites ici sans sécurité ! Il faut les retirer en cas de véritable mise en production**
+**Les clés secrètes sont écrites ici sans sécurité ! Il faut les retirer en cas de véritable mise en production**
+
+**La base de donées mySQL à été vidée**. Il faut être log pour voir son profil, voir ses emprunts ou encore réaliser un emprunt. L'ajout la modification et la suppression des médias se fait avec un compte administrateur. Il n'existe qu'un compte par défaut et c'est un admin avec les logs suivants:
+
+- Email : ``` admin@cesi.fr ```
+- Mot de Passe : ``` 4dm1n_p422word ```
+
+Les médias déjà empruntés ne sont pas visibles depuis la page d'acceuil mais seront affichés dans la page de recherche ou si on connais l'identifiant du médias, depuis l'url ```Silmarillion/medias/id```.
+
+La recherche se fait avec la navbar :
+- on peut chercher un champ vide pour voir tous les médias
+- on peut entrer un champ pour faire une recherhe avancée
+- on peut choisir le format de pagination grâce à la selection sur la page de recherche

@@ -15,6 +15,11 @@ function validateEmail(email) {
     return true;
 }
 
+function containsSpecialChars(value) {
+    const specialCharRegex = /[^a-zA-Z0-9\s._éàèùçâêîôûäëïöüÿÉÀÈÙÇÂÊÎÔÛÄËÏÖÜŸ-]/; //regex pour verifier les caracteres speciaux (y'en a bcp mais des noms ou prénoms peuvent en contenir)
+    return specialCharRegex.test(value);
+}
+
 function validateForm() {
     let isValid = true;
 
@@ -22,10 +27,20 @@ function validateForm() {
         alert("Le prénom est requis.");
         isValid = false;
     }
+    else if (firstname && containsSpecialChars(firstname.value)) { //et regade les caracteres speciaux
+        alert("Le prénom ne doit pas contenir de caractères spéciaux.");
+        isValid = false;
+    }
+
     if (lastname && lastname.value.trim() === "") { 
         alert("Le nom est requis.");
         isValid = false;
     }
+    else if (lastname && containsSpecialChars(lastname.value)) {
+        alert("Le nom ne doit pas contenir de caractères spéciaux.");
+        isValid = false;
+    }
+
     if (email && email.value.trim() === "") {
         alert("L'email est requis.");
         isValid = false;
@@ -46,12 +61,15 @@ function validateForm() {
         alert("Les mots de passe ne correspondent pas.");
         isValid = false;
     }
+
+    return isValid; 
 }
 
 
 document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", function (event) {
-        event.preventDefault(); //empeche la soumission
-        validateForm(); 
+        if (!validateForm()) {
+            event.preventDefault(); //empeche la soumission
+        }
     });
 });

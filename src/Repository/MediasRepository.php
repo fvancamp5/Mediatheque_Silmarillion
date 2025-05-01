@@ -14,6 +14,14 @@ class MediasRepository extends ServiceEntityRepository
 {
     private Connection $connection;
 
+    private function containsSpecialChars(string $value): bool {
+        //si un caractere n'est pas dans la liste on renvoie true
+        if (preg_match('/[^a-zA-Z0-9\s._\'-éàèùçâêîôûäëïöüÿÉÀÈÙÇÂÊÎÔÛÄËÏÖÜŸ-]/u', $value)) { //\pour faire passer ' dans le pregmatch
+            return true;
+        }
+        return false;
+    }
+
     public function __construct(ManagerRegistry $registry, Connection $connection)
     {
         parent::__construct($registry, Medias::class);
@@ -22,6 +30,9 @@ class MediasRepository extends ServiceEntityRepository
 
     public function update(int $id, string $title, string $author, string $type, string $description, string $image): void
     {
+        if (empty($title) || empty($author) || empty($type) || empty($description) || empty($image) || $this->containsSpecialChars($title) || $this->containsSpecialChars($author) || $this->containsSpecialChars($type) || $this->containsSpecialChars($description) || $this->containsSpecialChars($image)) {
+            return;
+        }
         $sql = 'UPDATE medias SET title = :title, author = :author, type = :type, description = :description, image = :image WHERE id = :id';
         $stmt = $this->connection->prepare($sql);
         $stmt->bindValue('title', $title);
@@ -56,9 +67,12 @@ class MediasRepository extends ServiceEntityRepository
         return !empty($result->fetchAllAssociative());
     }
 
-    public function add(string $title, string $author, string $type, string $description, string $image): void
+    public function add(string $title, string $author, string $type, string $description, string $image): bool
     {
-        $sql = 'INSERT INTO medias (title, author, type, description, image) VALUES (:title, :author, :type, :description, :image)';
+        if (empty($title) || empty($author) || empty($type) || empty($description) || empty($image) || $this->containsSpecialChars($title) || $this->containsSpecialChars($author) || $this->containsSpecialChars($type) || $this->containsSpecialChars($description) || $this->containsSpecialChars($image)) {
+            return false;
+        }
+        $sql = 'INSERT INTO medias (title, author, type, description, image, status) VALUES (:title, :author, :type, :description, :image, 1)';
         $stmt = $this->connection->prepare($sql);
         $stmt->bindValue('title', $title);
         $stmt->bindValue('author', $author);
@@ -66,6 +80,8 @@ class MediasRepository extends ServiceEntityRepository
         $stmt->bindValue('description', $description);
         $stmt->bindValue('image', $image);
         $stmt->executeQuery();
+
+        return true;
     }
 
     public function delete(int $id): void
