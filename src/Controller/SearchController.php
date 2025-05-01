@@ -14,9 +14,10 @@ final class SearchController extends AbstractController
 {
     #[Route('recherche/', name: 'search')]
     public function index(SessionInterface $session, Request $request, MediasRepository $medias): Response {
-        $user = null;
         // Récupère l'utilisateur connecté avce la session (pas avec des cookies)
         $user = $session->get('user');
+        $itemsPerPage = $request->query->get('itemsPerPage', 'tout');
+        $page = (int) $request->query->get('page', 1);
         $query = null;
         $results = [];
         
@@ -34,11 +35,22 @@ final class SearchController extends AbstractController
             $results = $medias->findAll();
         }
 
+        if ($itemsPerPage !== 'tout') {
+            $itemsPerPage = (int) $itemsPerPage;
+            $offset = ($page - 1) * $itemsPerPage;
+            $paginatedResults = array_slice($results, $offset, $itemsPerPage);
+        } else {
+            $paginatedResults = $results; 
+        }
+
         return $this->render('search/index.html.twig', [
             'page_name' => 'Recherche',
-            'medias' => $results,
+            'medias' => $paginatedResults,
             'user' => $user,
-            'query' => $query
+            'query' => $query,
+            'itemsPerPage' => $itemsPerPage,
+            'page' => $page,
+            'totalResults' => count($results),
         ]);
     }
 }

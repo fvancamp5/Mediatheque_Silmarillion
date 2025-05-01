@@ -7,7 +7,7 @@
 {% block body %}
     <div class="media-page">
         <h1 class="title is-primary">{{ media.title }}</h1> 
-        {% if user.status %}
+        {% if user and user.status %}
             <a href="{{ path("modification", { id:media.id } ) }}" class="button"> Modifier </a>
         {% endif %}
         <div class="media-content">
