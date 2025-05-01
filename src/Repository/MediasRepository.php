@@ -28,10 +28,10 @@ class MediasRepository extends ServiceEntityRepository
         $this->connection = $connection;
     }
 
-    public function update(int $id, string $title, string $author, string $type, string $description, string $image): void
+    public function update(int $id, string $title, string $author, string $type, string $description, string $image): bool
     {
         if (empty($title) || empty($author) || empty($type) || empty($description) || empty($image) || $this->containsSpecialChars($title) || $this->containsSpecialChars($author) || $this->containsSpecialChars($type) || $this->containsSpecialChars($description) || $this->containsSpecialChars($image)) {
-            return;
+            return false;
         }
         $sql = 'UPDATE medias SET title = :title, author = :author, type = :type, description = :description, image = :image WHERE id = :id';
         $stmt = $this->connection->prepare($sql);
@@ -42,6 +42,8 @@ class MediasRepository extends ServiceEntityRepository
         $stmt->bindValue('image', $image);
         $stmt->bindValue('id', $id);
         $stmt->executeQuery();
+
+        return true;
     }
 
     public function search(string $query): array
