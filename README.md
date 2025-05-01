@@ -51,8 +51,8 @@ https://www.figma.com/proto/i77g0HxKCzoeSqL1fbiiYo/Web-Rattrapage?page-id=0%3A1&
 
 - Le code est architecturé selon le modèle Model View Crontoller mais sous Symfony, ce qui implique des changemments de nom :
     - Les Vues sont dans le folder templates
-    - Les Controllers sont dans src/Controller
-    - Model est à la place divisé en deux folder src/Entity et src/Repository 
+    - Les Controllers sont dans src/Controller (avec les routes) , dans src/Repository (avec des fonctions permettant la manipulation des données) et dans src/Entity car les class possèdent des methodes get et set pour recuper et changer les données directements intégrés
+    - Les Models sont definis dans src/Entity (Doctrine va definir des variables dans la class qui correspondent aux champs des tables)
 
  (Entity va faire le lien avec la bdd, definir ou garder les champs des tables et proposer des methodes pour recuper les objets associés grâce à doctrine. Tandis que Repository va nous permettre de faire nos propres methodes d'objets afin de réaliser des requettes non pas avec PDO mais avec connection)
  
@@ -71,3 +71,7 @@ https://www.figma.com/proto/i77g0HxKCzoeSqL1fbiiYo/Web-Rattrapage?page-id=0%3A1&
 
 En partant du principe qu'un administrateur est un utilisateur avec des privilèges, un administrateur se connecte avec son compte comme un utilisateur normal, mais aura des accès supplémentaires. Le status admin est définit par le booléen status de la table user.
 
+
+## ATTENTION !
+
+**Les clés secrètent sont écrites ici sans sécurité ! Il faut les retirer en cas de véritable mise en production**
