@@ -57,7 +57,7 @@ final class AccountController extends AbstractController
     }
 
     #[Route('emprunts/', name: 'history', methods: ['GET'])]
-    function borrows(SessionInterface $session, MediasRepository $medias, LoanRepository $loans, HistoryRepository $history): Response {
+    function loans(SessionInterface $session, MediasRepository $medias, LoanRepository $loans, HistoryRepository $history): Response {
         //on initialise user sinon on a une erreur
         $user= null;
 

@@ -24,11 +24,9 @@ final class HomeController extends AbstractController{
 
             //vérifie si l'utilisateur existe
             if ($user->checkLogsin($email, $password)) {
-                // Fetch user details from the database
                 $userDetails = $user->getUserDetails($email);
             
                 if ($userDetails) {
-                    // Save user details in the session
                     $session->set('user', [
                         'id' => $userDetails['id'],
                         'firstname' => $userDetails['firstname'],
