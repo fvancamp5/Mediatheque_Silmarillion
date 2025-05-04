@@ -21,12 +21,18 @@ Le projet vise la réalisation d'une application web permettant la gestion compl
 
 **Wamp Server**
 - Configuration de server :
+
     - les virtual hosts ![alt text](imgREADME/image.png)
     - le httpd.conf pour définir le port sur lequel le server sera host, document root, la redirection par défaut ou encore les modules
     ![alt text](imgREADME/image-3.png)
     ![alt text](imgREADME/image-4.png)
     ![alt text](imgREADME/image-5.png)
     ![alt text](imgREADME/image-6.png)
+    - Pour accéder au site en localhost (ou via un un appareil connecté au même réseau et connaissant l'adresse ip) le root Directory est Silmarillion. ![alt text](imgREADME/image-8.png) 
+    - Lorsque que l'écrit http://localhos/silmarillion ou <adresse_ip>/silmarillion, on tombe sur le globalIndex.html. Un fichier .htaccess permet une redirection permanante vers l'index.php contenu dans /public :
+    ```
+    RewriteEngine On
+    RewriteRule ^$ /silmarillion/Rattrapage_web_mediatheque/public/ [R=301,L]```
 
 **PHPmyadmin**
 - Creation des utilisateurs avec des privilèges differents pour plus de sécurité : 
@@ -79,7 +85,7 @@ En partant du principe qu'un administrateur est un utilisateur avec des privilè
 **La base de donées mySQL à été vidée**. Il faut être log pour voir son profil, voir ses emprunts ou encore réaliser un emprunt. L'ajout la modification et la suppression des médias se fait avec un compte administrateur. Il n'existe qu'un compte par défaut et c'est un admin avec les logs suivants:
 
 - Email : ``` admin@cesi.fr ```
-- Mot de Passe : ``` 4dm1n_p422word ```
+- Mot de Passe : ``` 4dm1n_p422w0rd ```
 
 Les médias déjà empruntés ne sont pas visibles depuis la page d'acceuil mais seront affichés dans la page de recherche ou si on connais l'identifiant du médias, depuis l'url ```Silmarillion/medias/id```.
 
@@ -87,3 +93,11 @@ La recherche se fait avec la navbar :
 - on peut chercher un champ vide pour voir tous les médias
 - on peut entrer un champ pour faire une recherhe avancée
 - on peut choisir le format de pagination grâce à la selection sur la page de recherche
+
+
+Utilisation d'une machine virtuelle pour heberger l'api. Avec API pltaform en cli depuis symfony, on se connecte à la database avec les logs. On donne accès à toute les ip avec un ``` symfony server:start --allow-all-ip ``` Un accès à la documentation est disponible à /api/
+![alt text](imgREADME/image-9.png)
+
+Grâce aux logs sécurisés de API Platform, la methode d'authentification permet de générer un token JWT. 
+(logs test => email:```test@test.fr``` mot de passe ```password```)
+Si pas de JWT donné dans les requêtes, les elle renvoie un message d'erreur.
