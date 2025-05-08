@@ -96,11 +96,4 @@ La recherche se fait avec la navbar :
 - On peut choisir le format de pagination grâce à la sélection sur la page de recherche
 
 
-Utilisation d'une machine virtuelle pour héberger l'API. Avec API Platform en CLI depuis Symfony, on se connecte à la base de données avec les identifiants. On donne accès à toutes les IP avec un ``` symfony server:start --allow-all-ip ```. Un accès à la documentation est disponible à /api/
-![alt text](imgREADME/image-10.png)
-
-Grâce aux logs sécurisés d'API Platform, la méthode d'authentification permet de générer un token JWT. 
-(Logs test => email:```test@test.fr``` mot de passe ```password```)
-Si aucun JWT n'est donné dans les requêtes, elles renvoient un message d'erreur.
-
-## Pour la partie API, voir sur les deux autres releases
+## Pour la partie API, voir sur les deux autres releases ou directement sur le github : https://github.com/fvancamp5/Silmarillion
